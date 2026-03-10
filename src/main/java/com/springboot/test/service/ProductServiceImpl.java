@@ -10,6 +10,7 @@ import com.springboot.test.repository.StatusRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class ProductServiceImpl implements ProductService{
     private ModelMapper modelMapper;
 
     @Override
+    @Cacheable("getDataProduct")
     public DataProductDto getDataProduct() {
         List<Product> productsList = productRepository.findAll();
         List<Status> statusList = statusRepository.findAll();
